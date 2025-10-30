@@ -61,6 +61,7 @@ export default class NpmWhoamiCommand extends BaseCommand {
           registry,
           authType: npmHttpUtils.AuthType.ALWAYS_AUTH,
           jsonResponse: true,
+          allowOidc: Boolean(process.env.CI && (process.env.GITHUB_ACTIONS || process.env.GITLAB)),
           ident: this.scope ? structUtils.makeIdent(this.scope, ``) : undefined,
         });
       } catch (err) {
